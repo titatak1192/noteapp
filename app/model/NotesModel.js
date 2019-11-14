@@ -25,7 +25,7 @@
               var responseData = response.data;
               var notes = {};debugger;
               for (var index=0; index < responseData.length; index++) {
-                notes[responseData[index+1].id] = responseData[index];
+                notes[responseData[index].id] = responseData[index];
               }
               callback && callback(notes);
             });
