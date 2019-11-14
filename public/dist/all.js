@@ -307,7 +307,7 @@
             var selectedNote = {};
             for (var index in notes) {
                 if (notes[index].folder == folderId) {
-                visibleNotes.push(notes[index]);
+                visibleNotes.unshift(notes[index]);
             }
         }
         visibleNotes.sort(function(a, b) {
