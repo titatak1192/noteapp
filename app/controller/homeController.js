@@ -7,12 +7,35 @@
 
     /** @ngInject */
     function HomeController($scope, notesService, folderModel, notesModel, NOTE_AUTO_SAVE_TIME){
-        
-        
+
+
         init();
 
         function init(){
             console.log("this is new code");
+
+// $("document").ready(function () {
+//   window.panelOpen = true;
+//   $("#slider-trigger").click(function () {
+//     if (window.panelOpen) {
+//       $("#rightPanel").removeClass("m6");
+//       $("#rightPanel").addClass("m8");
+//       $("#leftPanel").hide( "slide", { direction: "left", duration: 200 } );
+//     } else {
+//       $("#rightPanel").removeClass("m8");
+//       $("#rightPanel").addClass("m6");
+//       $("#leftPanel").show( "slide", { direction: "left", duration: 200 } );
+//     }
+//     window.panelOpen = !window.panelOpen;
+//   });
+// });
+
+        }
+
+        $scope.sideBarToggle = false;
+        $scope.toggleSideBar = function(){
+          console.log($scope.sideBarToggle);
+          $scope.sideBarToggle = !$scope.sideBarToggle;
         }
 
         var lastTimeoutDetails = {};
@@ -33,24 +56,27 @@
 
         notesModel.getNotes(function (notes) {
             $scope.notes = notes;
-          });  
-        
-        $scope.createFolder = function () {
-            var name = prompt("Enter folder name");
-            if (!name) {
-              return;
+          });
+
+          $scope.createFolder = function () {
+              var name = prompt("Enter folder name");
+              if (!name) {
+                return;
+              }
+              var newFolder = folderModel.generate(name);
+              $scope.folders.push(newFolder);
+              $scope.folders.sort( function(a, b) {
+                return (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1;
+              });
+              notesService.folder.create(newFolder);
             }
-            var newFolder = folderModel.generate(name);
-            $scope.folders.push(newFolder);
-            notesService.folder.create(newFolder);
-          }
 
           $scope.selectFolder = function (id) {
             $scope.selectedFolder = id;
             $scope.NoteIsLastClicked = false;
             $scope.visibleNotes = notesService.notes.computeVisibleNotes($scope.notes, $scope.selectedFolder);
           }
-    
+
           $scope.createNote = function () {
             var newNote = {folder: $scope.selectedFolder, id: notesModel.getRandomId(), title: "Enter note", text: ""};
             $scope.notes[newNote.id] = newNote;
@@ -69,6 +95,7 @@
               return;
             }
             notesService.notes.create(note);
+            $scope.visibleNotes = notesService.notes.computeVisibleNotes($scope.notes, $scope.selectedFolder);
           }
 
           $scope.filterNotes = function () {
@@ -82,9 +109,9 @@
                 matchingNotes.push($scope.visibleNotes[index]);
               }
             }
-            $scope.visibleNotes = matchingNotes;        
-          }        
-        
+            $scope.visibleNotes = matchingNotes;
+          }
+
           $scope.delete = function () {
             if ($scope.NoteIsLastClicked) {
               // delete current note
@@ -121,7 +148,7 @@
                 };
             }
             $scope.selectedNote.updatedAt = (new Date()).toISOString();
-      
+
             var timeoutId = setTimeout(function () {
               $scope.userMessage = "Saving.."
               syncNotes(JSON.stringify($scope.selectedNote));
@@ -130,6 +157,6 @@
               timeoutId: timeoutId,
               noteId: $scope.selectedNote.id
             }
-        }, true);  
+        }, true);
     }
 }());

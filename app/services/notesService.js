@@ -48,7 +48,9 @@
                 visibleNotes.push(notes[index]);
             }
         }
-        visibleNotes.sort((a, b) => (new Date(a.updatedAt) > new Date(b.updatedAt)) ? -1 : 1);
+        visibleNotes.sort(function(a, b) {
+          return (new Date(a.updatedAt) > new Date(b.updatedAt)) ? -1 : 1;
+        });
         return visibleNotes;
         }
 
