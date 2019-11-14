@@ -89,7 +89,11 @@
             var newNote = {folder: $scope.selectedFolder, id: notesModel.getRandomId(), title: "Enter note", text: ""};
             $scope.notes[newNote.id] = newNote;
             $scope.selectedNote = newNote;
+              $scope.selectedNote.updatedAt = (new Date()).toISOString();
             $scope.visibleNotes = notesService.notes.computeVisibleNotes($scope.notes, $scope.selectedFolder);
+             $scope.visibleNotes = $scope.visibleNotes.sort(function(a, b) {
+          return (new Date(a.updatedAt) > new Date(b.updatedAt)) ? -1 : 1;
+        });
           }
 
           $scope.selectNote = function (id) {
