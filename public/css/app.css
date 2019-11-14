@@ -59,12 +59,24 @@
 
   .note-list {
       padding: 0 !important;
+      height: 100%;
   }
 
+  .note-list>ul {
+    height: 100%;
+    overflow: scroll;
+  }
   .folder-list {
       padding: 0 !important;
   }
 
+  textarea {
+    outline: none;
+  }
+
+  .material-icons{
+    font-size: 1em;
+  }
   .collection {
     margin: 0 !important;
     background: transparent !important
@@ -111,6 +123,7 @@
   right: 0;
   left: 0;
   height: 50px;
+  border: none;
 }
 .card-action.create a:hover{
   cursor: pointer;
