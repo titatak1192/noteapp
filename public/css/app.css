@@ -60,12 +60,9 @@
   .note-list {
       padding: 0 !important;
       height: 100%;
+      overflow: scroll;
   }
 
-  .note-list>ul {
-    height: 100%;
-    overflow: scroll;
-  }
   .folder-list {
       padding: 0 !important;
   }
