@@ -80,6 +80,8 @@
           $scope.createNote = function () {
               debugger;
           var newNote = {folder: $scope.selectedFolder, id: 0, title: "Enter note", text: ""};
+              console.log($scope.notes);
+          
           $scope.notes[newNote.id] = newNote;
           $scope.selectedNote = newNote;
           $scope.visibleNotes = notesService.notes.computeVisibleNotes($scope.notes, $scope.selectedFolder);
