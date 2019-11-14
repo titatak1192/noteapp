@@ -23,7 +23,7 @@
         function getNotes(callback) {
             $http.get(API_BASE_DOMAIN + "notes").then(function (response) {
               var responseData = response.data;
-              var notes = {};
+              var notes = {};debugger;
               for (var index=0; index < responseData.length; index++) {
                 notes[responseData[index+1].id] = responseData[index];
               }
