@@ -42,7 +42,7 @@
 
         notesFn.computeVisibleNotes = function(notes, folderId){
             var visibleNotes = [];
-            var selectedNote = {};
+            var selectedNote = {};debugger;
             for (var index in notes) {
                 if (notes[index].folder == folderId) {
                 visibleNotes.push(notes[index]);
