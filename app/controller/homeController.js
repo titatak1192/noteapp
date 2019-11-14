@@ -78,6 +78,7 @@
           }
 
           $scope.createNote = function () {
+              debugger;
           var newNote = {folder: $scope.selectedFolder, id: 0, title: "Enter note", text: ""};
           $scope.notes[newNote.id] = newNote;
           $scope.selectedNote = newNote;
