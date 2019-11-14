@@ -78,17 +78,11 @@
           }
 
           $scope.createNote = function () {
-            debugger;
-            var newNote = {folder: $scope.selectedFolder, id: notesModel.getRandomId(), title: "Enter note", text: ""};
-            $scope.notes[newNote.id] = newNote;
-            $scope.selectedNote = newNote;
-            $scope.visibleNotes = notesService.notes.computeVisibleNotes($scope.notes, $scope.selectedFolder);
-            $scope.visibleNotes.sort(function(a,b){
-              var c = new Date(a.updatedAt);
-              var d = new Date(b.updatedAt);
-              return c-d;
-              });
-          }
+          var newNote = {folder: $scope.selectedFolder, id: 0, title: "Enter note", text: ""};
+          $scope.notes[newNote.id] = newNote;
+          $scope.selectedNote = newNote;
+          $scope.visibleNotes = notesService.notes.computeVisibleNotes($scope.notes, $scope.selectedFolder);
+        }
 
           $scope.selectNote = function (id) {
             $scope.selectedNote = $scope.notes[id];
