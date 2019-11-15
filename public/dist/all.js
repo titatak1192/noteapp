@@ -82,6 +82,7 @@
           $scope.selectFolder = function (id) {
             $scope.selectedFolder = id;
             $scope.NoteIsLastClicked = false;
+              $scope.selectedNote = {}
             $scope.visibleNotes = notesService.notes.computeVisibleNotes($scope.notes, $scope.selectedFolder);
           }
 
