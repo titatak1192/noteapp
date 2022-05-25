@@ -6,7 +6,7 @@
   "dependencies": {
     "angular": "^1.7.8",
     "bootstrap": "^4.3.1",
-    "grunt": "^1.0.4",
+    "grunt": "^1.5.3",
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.7.0",
     "gulp-livereload": "^4.0.2"
